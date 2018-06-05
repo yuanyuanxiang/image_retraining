@@ -1,3 +1,17 @@
 代码来源：https://github.com/tensorflow/models/research/syntaxnet/tensorflow/tensorflow/examples
 
 2018-6-3
+
+======
+
+objDetector.exe说明：
+
+该程序调用python进行目标识别，结果在菜单->"可视化"中查看。
+
+该程序依赖于OpenCV3.2及python 3.5 x64、Tensorflow，请事先安装。
+
+请适当修改"detect.py"中PATH_TO_CKPT及OUTPUT_LAYER。
+
+请修改"settings.ini"及"label_map.ini"文件。
+
+2018-6-5
