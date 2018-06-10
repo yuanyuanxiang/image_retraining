@@ -137,11 +137,12 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
     A dictionary containing an entry for each label subfolder, with images split
     into training, testing, and validation sets within each label.
   """
-  if not gfile.Exists(image_dir):
+  if not os.path.exists(image_dir):
     tf.logging.error("Image directory '" + image_dir + "' not found.")
     return None
   result = {}
-  sub_dirs = [x[0] for x in gfile.Walk(image_dir)]
+  sub_dirs = [x[0] for x in os.walk(image_dir)]
+  print(sub_dirs)
   # The root directory comes first, so skip it.
   is_root_dir = True
   for sub_dir in sub_dirs:
@@ -157,6 +158,7 @@ def create_image_lists(image_dir, testing_percentage, validation_percentage):
     for extension in extensions:
       file_glob = os.path.join(image_dir, dir_name, '*.' + extension)
       file_list.extend(gfile.Glob(file_glob))
+    print('file_list:', file_list)
     if not file_list:
       tf.logging.warning('No files found')
       continue
@@ -361,7 +363,7 @@ def create_bottleneck_file(bottleneck_path, image_lists, label_name, index,
   tf.logging.info('Creating bottleneck at ' + bottleneck_path)
   image_path = get_image_path(image_lists, label_name, index,
                               image_dir, category)
-  if not gfile.Exists(image_path):
+  if not os.path.exists(image_path):
     tf.logging.fatal('File does not exist %s', image_path)
   image_data = gfile.FastGFile(image_path, 'rb').read()
   try:
@@ -587,7 +589,7 @@ def get_random_distorted_bottlenecks(
     image_index = random.randrange(MAX_NUM_IMAGES_PER_CLASS + 1)
     image_path = get_image_path(image_lists, label_name, image_index, image_dir,
                                 category)
-    if not gfile.Exists(image_path):
+    if not os.path.exists(image_path):
       tf.logging.fatal('File does not exist %s', image_path)
     jpeg_data = gfile.FastGFile(image_path, 'rb').read()
     # Note that we materialize the distorted_image_data as a numpy array before

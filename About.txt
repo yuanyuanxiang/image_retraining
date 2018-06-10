@@ -1,4 +1,4 @@
-代码来源：https://github.com/tensorflow/models/research/syntaxnet/tensorflow/tensorflow/examples
+﻿代码来源：https://github.com/tensorflow/models/research/syntaxnet/tensorflow/tensorflow/examples
 
 2018-6-3
 
@@ -12,6 +12,14 @@ objDetector.exe说明：
 
 请适当修改"detect.py"中PATH_TO_CKPT及OUTPUT_LAYER。
 
-请修改"settings.ini"及"label_map.ini"文件。
+请修改"settings.ini"及"label_map.ini"文件（若含有中文，请以ANSI编码）。
 
 2018-6-5
+
+======
+
+目录名称不能取中文，否则Tensorflow报目录不存在的错误。
+
+图片名称可以取中文，虽然报错，但是迁移学习过程仍然正常进行。
+
+2018-6-6
